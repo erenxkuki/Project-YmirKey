@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Eren Cookie Logger</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Courier New', monospace;
+      background: url('https://i.pinimg.com/474x/c5/6e/c2/c56ec2a6cbd8f1ea188642ff3709a892.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #00ffcc;
+      text-shadow: 0 0 5px #00ffe7;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.75);
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 500px;
+      margin: 80px auto;
+      box-shadow: 0 0 20px #00ffe7;
+    }
+
+    h1 {
+      color: #ff4e77;
+      text-align: center;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 5px #ff4e77; }
+      to { text-shadow: 0 0 20px #ff4e77; }
+    }
+
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      background: #111;
+      color: #00ffcc;
+      border: 1px solid #00ffcc;
+    }
+
+    button:hover {
+      background: #00ffcc;
+      color: black;
+      transition: 0.3s;
+    }
+
+    .log {
+      margin-top: 20px;
+      background: #000;
+      padding: 15px;
+      border: 1px solid #00ffcc;
+      height: 250px;
+      overflow-y: auto;
+      font-size: 14px;
+      white-space: pre-line;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="overlay">
+    <h1>🔥 EREN COOKIE LOGGER 🔥</h1>
+    <input type="text" id="username" placeholder="Enter Username">
+    <button onclick="startLogger()">Start Scan</button>
+    <div id="log" class="log">[ Awaiting Command... ]</div>
+  </div>
+
+  <script>
+    const logEl = document.getElementById("log");
+
+    function randomString(len) {
+      const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      let str = '';
+      for (let i = 0; i < len; i++) {
+        str += chars[Math.floor(Math.random() * chars.length)];
+      }
+      return str;
+    }
+
+    function logLine(text) {
+      logEl.innerText += `\n> ${text}`;
+      logEl.scrollTop = logEl.scrollHeight;
+    }
+
+    async function delay(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function startLogger() {
+      const username = document.getElementById("username").value || "JaegerUser";
+      logEl.innerText = `[ Logger initiated for ${username} ]`;
+
+      const steps = [
+        "🔍 Initializing...",
+        "🔐 Accessing Roblox security vault...",
+        "🍪 Searching for cookie paths...",
+        "📡 Establishing secure connection...",
+        "💾 Syncing with Eren's Titan memory...",
+        "🧠 Decoding .ROBLOSECURITY structure...",
+        "🔄 Finalizing packet delivery..."
+      ];
+
+      for (let step of steps) {
+        for (let dots = 0; dots <= 3; dots++) {
+          logLine(step + '.'.repeat(dots));
+          await delay(1000 + Math.random() * 500); // random wait for realism
+        }
+      }
+
+      await delay(2000);
+      logLine("☠️ Cookies found:");
+      await delay(1000);
+
+      const cookies = [
+        `.ROBLOSECURITY=_${randomString(100)}`,
+        `RBX-AuthToken=${randomString(80)}`,
+        `__Secure-User=${username}_${Math.floor(Math.random()*999999)}`,
+        `RBX-CF-Token=${randomString(64)}`,
+        `Logger-ID=ERENx${randomString(8)}`
+      ];
+      for (let cookie of cookies) {
+        await delay(800);
+        logLine(cookie);
+      }
+
+      logLine("✅ Operation complete. Awaiting new target...");
+    }
+  </script>
+
+</body>
+</html>
